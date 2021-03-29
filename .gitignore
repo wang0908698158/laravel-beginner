@@ -1,0 +1,30 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/*.log
+/storage/report
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+laradock
+
+# Global/Temp.gitignore
+*~
+*.swp
+
+# Global/OSX.gitignore
+.DS_Store
+.AppleDouble
+
+# IntelliJ IDEA project files
+/.idea
+.idea
+
+# VS Code files
+.vscode/
