@@ -16,19 +16,7 @@ class Teacher extends Model
         'teacherName',
     ];
 
-    /*public function course()
-    {
-        return $this->hasOne(
-            Course::class,
-            'outline'
-        );
-    }*/
-
-    /*public function course()
-    {
-        return $this->hasOne('App\Models\Course');
-    }*/
-
+    
     public function course()
     {
         return $this->hasOne(

@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "developer@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/articles": {
+            "get": {
+                "tags": [
+                    "Article Tag"
+                ],
+                "summary": "取得文章列表 Summary",
+                "description": "取得文章列表 Description",
+                "operationId": "articles",
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Article Tag"
+                ],
+                "summary": "取得文章列表 Summary",
+                "description": "取得文章列表 Description",
+                "operationId": "articles",
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    }
+                }
+            }
+        }
+    }
+}
