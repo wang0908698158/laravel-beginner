@@ -37,4 +37,16 @@ class CourseService
 
         return new CourseResource($course);
     }
+
+    // public function getTeacherById($id): showTeacherID
+    // {
+    //     if (empty($id)) {
+    //         throw new Exception('invalid course id');
+    //     }
+    //     if (! $course = $this->repo->getCourseById($id)) {
+    //         throw new Exception('course not found');
+    //     }
+
+    //     return new CourseResource($course);
+    // }
 }

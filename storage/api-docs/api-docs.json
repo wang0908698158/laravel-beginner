@@ -13,30 +13,279 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/articles": {
+        "/api/teachers/{id}": {
             "get": {
                 "tags": [
-                    "Article Tag"
+                    "Teachers"
                 ],
-                "summary": "取得文章列表 Summary",
-                "description": "取得文章列表 Description",
-                "operationId": "articles",
+                "summary": "取得老師",
+                "description": "取得老師",
+                "operationId": "id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
                     }
                 }
             },
-            "post": {
+            "put": {
                 "tags": [
-                    "Article Tag"
+                    "Teachers"
                 ],
-                "summary": "取得文章列表 Summary",
-                "description": "取得文章列表 Description",
-                "operationId": "articles",
+                "summary": "更新老師資訊",
+                "description": "更新老師資訊",
+                "operationId": "teacherChange",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "teacherName",
+                        "in": "query",
+                        "description": "老師名稱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "刪除老師",
+                "description": "刪除老師",
+                "operationId": "TeacherDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Teacher id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                }
+            }
+        },
+        "/api/teachers": {
+            "post": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "新增老師",
+                "description": "新增老師",
+                "operationId": "teacherPost",
+                "parameters": [
+                    {
+                        "name": "teacherName",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "資源成功建立"
+                    },
+                    "400": {
+                        "description": "請求格式錯誤"
+                    }
+                }
+            }
+        },
+        "/api/courses/{courseId}": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "取得課程",
+                "description": "取得課程",
+                "operationId": "courses",
+                "parameters": [
+                    {
+                        "name": "courseId",
+                        "in": "path",
+                        "description": "courseId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "找不到對應課程"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "刪除課程",
+                "description": "刪除課程",
+                "operationId": "coursesDelete",
+                "parameters": [
+                    {
+                        "name": "courseId",
+                        "in": "path",
+                        "description": "courseId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "刪除成功"
+                    },
+                    "404": {
+                        "description": "課程找不到"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "更新課程",
+                "description": "更新課程",
+                "operationId": "coursesPatch",
+                "parameters": [
+                    {
+                        "name": "courseId",
+                        "in": "path",
+                        "description": "courseId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "課程名稱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "description",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "outline",
+                        "in": "query",
+                        "description": "description",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                }
+            }
+        },
+        "/api/courses": {
+            "post": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "新增課程",
+                "description": "新增課程",
+                "operationId": "coursesPost",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "課程名稱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "description",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "outline",
+                        "in": "query",
+                        "description": "description",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "資源成功建立"
+                    },
+                    "422": {
+                        "description": "驗證錯誤"
                     }
                 }
             }

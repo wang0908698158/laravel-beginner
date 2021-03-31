@@ -28,7 +28,6 @@ class CourseTest extends TestCase
      */
     public function testSuccess()
     {
-       
         Course::create([
             'id' => '999',
             'name' => '測試課程',
@@ -69,20 +68,43 @@ class CourseTest extends TestCase
     public function testCreateSuccess()
     {
         Course::create([
-            'name' => 'name',
-            'description' => 'description',
-            'outline' => 'outline',
+            'id' => '999',
+            'name' => '測試課程',
+            'description' => 'test',
+            'outline' => 'test',
         ]);
-        $response = $this->post('/api/courses/999');
-
+        $response = $this->get('/api/courses/999');
+    
         $response->assertStatus(200)
-            ->assertExactJson([
-                "data" => [
-                    'name' => 'name',
-                    'description' => 'description',
-                    'outline' => 'outline',
-                ],
-            ]);
+        ->assertExactJson([
+            "data" => [
+                'name' => '測試課程',
+                'description' => 'test',
+                'outline' => 'test',
+                'students' => [],//這兩句沒有會出錯
+            ],
+            "metadata" => Carbon::now(),//
+        ]);
+    }
+
+    public function testUpdateSuccess()
+    {
+        Course::create([
+            'id' => '999',
+            'name' => '測試課程',
+            'description' => 'test',
+            'outline' => 'test',
+        ]);
+
+        $response = $this->json(
+            'PUT',
+            '/api/courses/999',
+            [
+                'name' => 'testtesttest',
+            ]
+        );
+
+        $response->assertStatus(200)->assertExactJson( ["success" => true] );
     }
     
     public function testFailed()
@@ -104,7 +126,33 @@ class CourseTest extends TestCase
                 "message" => "課程找不到",
             ]);
     }
+
+    public function testCreateFailed()
+    {
+        $response = $this->json(
+            'POST',
+            '/api/courses',
+            [
+                'testerror' => 'testerror',
+            ]
+        );
+
+        $response->assertStatus(422)->assertExactJson( ["message" => "驗證錯誤"] );
+    }
     
+    public function testUpdateFaild()
+    {
+        $response = $this->json(
+            'PUT',
+            '/api/courses/999',
+            [
+                'name' => 'testError'
+            ]
+        );
+
+        $response->assertStatus(404)->assertExactJson( ["message" => "課程找不到"] );
+    }
+
     /*public function testCreateSuccess()
     {
         $response = $this->json(
